@@ -1,0 +1,22 @@
+sudo: required
+
+language: ruby
+
+dist: trusty
+
+before_install:
+ - sudo apt-get -qq update 
+ - sudo apt-get install -y quilt parted realpath qemu-user-static debootstrap  zerofree pxz zip dosfstools bsdtar libcap2-bin grep rsync xz-utils
+
+
+script:
+
+  - echo "IMG_NAME='Raspbian'" > config
+  - sudo ./build.sh
+
+
+
+notifications:
+
+webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
+
